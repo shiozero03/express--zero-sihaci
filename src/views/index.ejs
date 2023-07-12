@@ -1,0 +1,138 @@
+<html>
+  	<head>
+    	<title>Dokumentasi API</title>
+  	</head>
+  	<body>
+    	<h1>Berikut link untuk dokumentasi API anda</h1>
+    	<table style="width: 100%" border="2">
+            <tbody>
+        		<tr>
+        			<th colspan="4" style="text-align: left; padding-left: 20px">
+        				<h2 style="margin: 0">Admin</h2>
+        			</th>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">1</td>
+        			<td style="padding-left: 20px">Tampil data admin</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin</td>
+        			<td style="padding-left: 20px">
+        				<a href="<%= data.server %>/api/v1/admin">Lihat Data</a>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">2</td>
+        			<td style="padding-left: 20px">Tambah data admin</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin/store</td>
+        			<td style="padding-left: 20px">
+        				{<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_admin": $_POST['nama_admin'],<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+        				}
+        			</td>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">3</td>
+        			<td style="padding-left: 20px">Tampil data admin berdasarkan id</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin/show/:id</td>
+        			<td style="padding-left: 20px">
+        				<a href="<%= data.server %>/api/v1/admin/show/1">Lihat Contoh</a>
+        			</td>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">4</td>
+        			<td style="padding-left: 20px">Update data admin berdasarkan id</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin/update/:id</td>
+        			<td style="padding-left: 20px">
+        				{<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_admin": $_POST['nama_admin'],<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+        				}
+        			</td>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">5</td>
+        			<td style="padding-left: 20px">Hapus data admin berdasarkan id</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin/delete/:id</td>
+        			<td style="padding-left: 20px"> - </td>
+        		</tr>
+        		<tr>
+        			<td style="text-align: center">6</td>
+        			<td style="padding-left: 20px">Login data admin berdasarkan username dan password</th>
+        			<td style="padding-left: 20px"><%= data.server %>/v1/admin/login</td>
+        			<td style="padding-left: 20px">
+        				{<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+        					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+        				}
+        			</td>
+        		</tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <th colspan="4" style="text-align: left; padding-left: 20px">
+                        <h2 style="margin: 0">Hotel</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <td style="text-align: center">1</td>
+                    <td style="padding-left: 20px">Tampil data hotel</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel</td>
+                    <td style="padding-left: 20px">
+                        <a href="<%= data.server %>/api/v1/hotel">Lihat Data</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">2</td>
+                    <td style="padding-left: 20px">Tambah data hotel</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel/store</td>
+                    <td style="padding-left: 20px">
+                        {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_hotel": $_POST['nama_hotel'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">3</td>
+                    <td style="padding-left: 20px">Tampil data hotel berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel/show/:id</td>
+                    <td style="padding-left: 20px">
+                        <a href="<%= data.server %>/api/v1/hotel/show/3">Lihat Contoh</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">4</td>
+                    <td style="padding-left: 20px">Update data hotel berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel/update/:id</td>
+                    <td style="padding-left: 20px">
+                        {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_hotel": $_POST['nama_hotel'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">5</td>
+                    <td style="padding-left: 20px">Hapus data hotel berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel/delete/:id</td>
+                    <td style="padding-left: 20px"> - </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">6</td>
+                    <td style="padding-left: 20px">Login data hotel berdasarkan username dan password</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/hotel/login</td>
+                    <td style="padding-left: 20px">
+                        {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"username": $_POST['username'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+    	</table>
+  	</body>
+</html>
