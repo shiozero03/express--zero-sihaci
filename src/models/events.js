@@ -1,8 +1,13 @@
 const connection = require('../config/database');
 
 const getAllEvents = (body) => {
-	const query = `SELECT * FROM events LIMIT ${body.limit} OFFSET ${body.offset}`;
-	return connection.queryPromise(query);
+	if(body.limit == 0){
+		const query = `SELECT * FROM events`;
+		return connection.queryPromise(query);
+	} else {
+		const query = `SELECT * FROM events LIMIT ${body.limit} OFFSET ${body.offset}`;
+		return connection.queryPromise(query);
+	}
 };
 
 const storeEvents = (body) => {
