@@ -69,6 +69,7 @@
         			</td>
         		</tr>
             </tbody>
+
             <tbody>
                 <tr>
                     <th colspan="4" style="text-align: left; padding-left: 20px">
@@ -131,6 +132,62 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"password": $_POST['password'],<br>
                         }
                     </td>
+                </tr>
+            </tbody>
+
+            <tbody>
+                <tr>
+                    <th colspan="4" style="text-align: left; padding-left: 20px">
+                        <h2 style="margin: 0">Event</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <td style="text-align: center">1</td>
+                    <td style="padding-left: 20px">Tampil data event</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/event?limit=10&page=1</td>
+                    <td style="padding-left: 20px">
+                        <a href="<%= data.server %>/api/v1/admin?limit=3&page=1">Lihat Data</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">2</td>
+                    <td style="padding-left: 20px">Tambah data event</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/event/store</td>
+                    <td style="padding-left: 20px">
+                        {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_event": $_POST['nama_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"banner_event": $_FILES['banner_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image_event": $_FILES['image_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"deskripsi_event": $_POST['deskripsi_event'],<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">3</td>
+                    <td style="padding-left: 20px">Tampil data event berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/event/show/:id</td>
+                    <td style="padding-left: 20px">
+                        <a href="<%= data.server %>/api/v1/event/show/1">Lihat Contoh</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">4</td>
+                    <td style="padding-left: 20px">Update data event berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/event/update/:id</td>
+                    <td style="padding-left: 20px">
+                        {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"nama_event": $_POST['nama_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"banner_event": $_FILES['banner_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"image_event": $_FILES['image_event'],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"deskripsi_event": $_POST['deskripsi_event'],<br>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: center">5</td>
+                    <td style="padding-left: 20px">Hapus data event berdasarkan id</th>
+                    <td style="padding-left: 20px"><%= data.server %>/v1/event/delete/:id</td>
+                    <td style="padding-left: 20px"> - </td>
                 </tr>
             </tbody>
     	</table>

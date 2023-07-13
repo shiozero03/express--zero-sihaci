@@ -3,8 +3,16 @@ const express = require('express');
 const app = express();
 const server = process.env.SERVER;
 const path = require('path');
+const fileUpload = require('express-fileupload');
+const cors = require('cors');
 
 app.set('view engine', 'ejs');
+
+app.use(cors());
+app.use(fileUpload());
+
+const publicPath = path.join(__dirname, 'public');
+app.use('/public', express.static(publicPath));
 
 const middlewareLogRequest = require('./src/middleware/logs');
 app.use(middlewareLogRequest);
@@ -13,10 +21,12 @@ app.use(express.json());
 // Get Routes
 const adminRoutes = require('./src/routes/admins');
 const hotelRoutes = require('./src/routes/hotels');
+const eventRoutes = require('./src/routes/events');
 
 // Set Routes+
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/hotel', hotelRoutes);
+app.use('/api/v1/event', eventRoutes);
 
 // Route API
 app.get('/', (req, res) => {
