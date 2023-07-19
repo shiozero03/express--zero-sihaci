@@ -34,7 +34,7 @@ const createNewHotels = (req, res) => {
     		message: 'Nama hotel, username, dan password harus diisi'
     	});
   	} else {
-  		connection.queryPromise('SELECT * FROM hotels WHERE username = ?', username, (error, results) => {
+  		connection.queryPromise('SELECT * FROM users WHERE username = ?', username, (error, results) => {
 	  		if (error) {
 	  			return res.status(500).json({
 		    		status: 500,
@@ -102,7 +102,7 @@ const updateHotels = (req, res) => {
     		message: 'Nama hotel, username, dan password harus diisi'
     	});
   	} else {
-  		connection.queryPromise('SELECT * FROM hotels WHERE id_hotel = ?', id, (error, results) => {
+  		connection.queryPromise('SELECT * FROM users WHERE id_user = ?', id, (error, results) => {
 	  		if (error) {
 	  			return res.status(500).json({
 		    		status: 500,
@@ -117,7 +117,7 @@ const updateHotels = (req, res) => {
 		    	} else {
 		    		if(password === results[0].password){
 			    		if(username != results[0].username){
-			    			connection.queryPromise('SELECT * FROM hotels WHERE username = ?', username, (error2, results2) => {
+			    			connection.queryPromise('SELECT * FROM users WHERE username = ?', username, (error2, results2) => {
 						  		if (error2) {
 						  			return res.status(500).json({
 							    		status: 500,
@@ -173,7 +173,7 @@ const updateHotels = (req, res) => {
 		    		} else {
 			    		bcrypt.hash(password, 10, (err, hashedPassword) => {
 			    			if(username != results[0].username){
-				    			connection.queryPromise('SELECT * FROM hotels WHERE username = ?', username, (error2, results2) => {
+				    			connection.queryPromise('SELECT * FROM users WHERE username = ?', username, (error2, results2) => {
 							  		if (error2) {
 							  			return res.status(500).json({
 								    		status: 500,
@@ -186,7 +186,7 @@ const updateHotels = (req, res) => {
 												message: 'Username sudah digunakan, harap gunakan username lain'
 											});
 								    	} else {
-								    		const setBody = { nama_hotel: nama_hotel, username: username, hashedPassword: password, id_hotel: id }
+								    		const setBody = { nama_hotel: nama_hotel, username: username, password: hashedPassword, id_hotel: id }
 											hotelModels.updateHotels(setBody)
 										    .then(modelsData => {
 												res.status(200).json({
@@ -255,45 +255,10 @@ const deleteHotels = (req, res) => {
     });
 };
 
-const loginHotels = (req, res) => {
-	const {username, password} = req.body
-	const setBody = { username: username }
-	hotelModels.loginHotels(setBody)
-    .then(modelsData => {
-    	if(modelsData == ''){
-    		res.status(400).json({
-				status: 400,
-				message: "Username atau password salah"
-			});
-    	} else {
-    		bcrypt.compare(password, modelsData[0].password, (err, result) => {
-  				if(err){
-  					console.error('Terjadi kesalahan saat pengecekan password:', err);
-        			res.status(500).json({ error: 'Internal server error' });
-  				} else {
-  					if(result){
-  						res.status(200).json({
-  							status: 200,
-  							message: 'Login berhasil',
-  							data: modelsData[0]
-  						});
-  					} else {
-  						res.status(400).json({
-							status: 400,
-							message: "Username atau password salah"
-						});
-  					}
-  				}
-  			});
-    	}
-    });
-}
-
 module.exports = {
 	getAllHotels,
 	createNewHotels,
 	updateHotels,
 	deleteHotels,
-	getHotelById,
-	loginHotels
+	getHotelById
 }

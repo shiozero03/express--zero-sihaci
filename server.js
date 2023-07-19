@@ -19,6 +19,7 @@ app.use(middlewareLogRequest);
 app.use(express.json());
 
 // Get Routes
+const userRoutes = require('./src/routes/users');
 const adminRoutes = require('./src/routes/admins');
 const hotelRoutes = require('./src/routes/hotels');
 const eventRoutes = require('./src/routes/events');
@@ -29,6 +30,7 @@ const laporanRoutes = require('./src/routes/laporans');
 const akomodasiRoutes = require('./src/routes/akomodasis');
 
 // Set Routes+
+app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/hotel', hotelRoutes);
 app.use('/api/v1/event', eventRoutes);

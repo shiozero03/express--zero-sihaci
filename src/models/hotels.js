@@ -1,44 +1,37 @@
 const connection = require('../config/database');
 
 const getAllHotels = () => {
-	const query = 'SELECT * FROM hotels';
+	const query = `SELECT * FROM users WHERE role_user = 'Hotel'`;
 	return connection.queryPromise(query);
 };
 
 const storeHotels = (body) => {
 	const query = `
-					INSERT INTO hotels (id_hotel, nama_hotel, username, password)
-					VALUES (NULL, '${body.nama_hotel}', '${body.username}', '${body.password}')
+					INSERT INTO users (id_user, nama_user, username, password, role_user)
+					VALUES (NULL, '${body.nama_hotel}', '${body.username}', '${body.password}', 'Hotel')
 				`;
 	return connection.queryPromise(query);
 };
 
 const getAllHotelsById = (id) => {
-	const query = `SELECT * FROM hotels WHERE id_hotel = ${id}`;
+	const query = `SELECT * FROM users WHERE id_user = ${id}`;
 	return connection.queryPromise(query);
 };
 
 const updateHotels = (body) => {
-	const query = `UPDATE hotels SET
-						nama_hotel = '${body.nama_hotel}',
+	const query = `UPDATE users SET
+						nama_user = '${body.nama_hotel}',
 						username = '${body.username}',
 						password = '${body.password}'
 					WHERE
-						hotels.id_hotel = '${body.id_hotel}'
+						users.id_user = '${body.id_hotel}'
 				`;
 	return connection.queryPromise(query);
 };
 
 const deleteHotels = (id) => {
 	const query = `
-					DELETE FROM hotels WHERE hotels.id_hotel = '${id}'
-				`;
-	return connection.queryPromise(query);
-};
-
-const loginHotels = (body) => {
-	const query = `
-					SELECT * FROM hotels WHERE username = '${body.username}'
+					DELETE FROM users WHERE users.id_hotel = '${id}'
 				`;
 	return connection.queryPromise(query);
 };
@@ -48,6 +41,5 @@ module.exports = {
 	storeHotels,
 	getAllHotelsById,
 	updateHotels,
-	deleteHotels,
-	loginHotels
+	deleteHotels
 };

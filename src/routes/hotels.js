@@ -11,6 +11,5 @@ router.patch('/update/:id', hotelControllers.updateHotels);
 router.post('/update/:id', hotelControllers.updateHotels);
 router.delete('/delete/:id', hotelControllers.deleteHotels);
 router.get('/delete/:id', hotelControllers.deleteHotels);
-router.post('/login', hotelControllers.loginHotels);
 
 module.exports = router;

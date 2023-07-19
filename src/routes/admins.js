@@ -11,6 +11,5 @@ router.post('/update/:id', adminControllers.updateAdmins);
 router.patch('/update/:id', adminControllers.updateAdmins);
 router.get('/delete/:id', adminControllers.deleteAdmins);
 router.delete('/delete/:id', adminControllers.deleteAdmins);
-router.post('/login', adminControllers.loginAdmins);
 
 module.exports = router;
