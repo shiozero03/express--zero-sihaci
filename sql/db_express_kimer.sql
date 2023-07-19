@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2023 at 08:23 AM
+-- Generation Time: Jul 19, 2023 at 04:58 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -52,6 +52,7 @@ INSERT INTO `admins` (`id_admin`, `nama_admin`, `username`, `password`) VALUES
 CREATE TABLE `akomodasis` (
   `id_akomodasi` bigint(20) NOT NULL,
   `id_hotel` bigint(20) DEFAULT NULL,
+  `nama_akomodasi` varchar(255) NOT NULL,
   `kategori_hotel` varchar(255) DEFAULT NULL,
   `harga_terendah` int(11) DEFAULT NULL,
   `harga_tertinggi` int(11) DEFAULT NULL,
@@ -64,7 +65,8 @@ CREATE TABLE `akomodasis` (
   `link_website` text DEFAULT NULL,
   `link_instagram` text DEFAULT NULL,
   `link_youtube` text DEFAULT NULL,
-  `link_twitter` text DEFAULT NULL
+  `link_twitter` text DEFAULT NULL,
+  `link_facebook` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -80,6 +82,23 @@ CREATE TABLE `events` (
   `image_event` varchar(255) DEFAULT NULL,
   `deskripsi_event` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`id_event`, `nama_event`, `banner_event`, `image_event`, `deskripsi_event`) VALUES
+(1, 'a', '1689229612632_banner_Lighthouse.jpg', '1689229612631_image_Chrysanthemum.jpg', 'a'),
+(13, 'daf', '1689227442394_banner_Tulips.jpg', '1689227442394_image_Koala.jpg', 'fafa'),
+(14, 'daf', '1689227443294_banner_Tulips.jpg', '1689227443294_image_Koala.jpg', 'fafa'),
+(15, 'daf', '1689227444277_banner_Tulips.jpg', '1689227444277_image_Koala.jpg', 'fafa'),
+(16, 'events 1', '1689229318085_banner_Koala.jpg', '1689229318085_image_Desert.jpg', 'event lorem ipsum'),
+(17, 'events 1', '1689229376380_banner_Koala.jpg', '1689229376380_image_Desert.jpg', 'event lorem ipsum'),
+(18, 'events 1', '1689229414700_banner_Koala.jpg', '1689229414700_image_Tulips.jpg', 'event lorem ipsum'),
+(19, 'fa', '1689229438901_banner_Chrysanthemum.jpg', '1689229438901_image_Lighthouse.jpg', 'fa'),
+(20, 'events 1', '1689229639575_banner_Jellyfish.jpg', '1689229639575_image_Tulips.jpg', 'dada'),
+(21, 'events 1', '1689229727875_banner_Jellyfish.jpg', '1689229727875_image_Tulips.jpg', 'dada'),
+(22, 'events 1', '1689229821510_banner_Jellyfish.jpg', '1689229821508_image_Tulips.jpg', 'dada');
 
 -- --------------------------------------------------------
 
@@ -108,10 +127,20 @@ CREATE TABLE `kuliners` (
   `image_kuliner` varchar(255) DEFAULT NULL,
   `deskripsi_kuliner` text DEFAULT NULL,
   `link_gmaps` text DEFAULT NULL,
-  `link_instagram` int(11) DEFAULT NULL,
+  `link_instagram` text DEFAULT NULL,
   `link_shopee` text DEFAULT NULL,
   `link_tokopedia` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `kuliners`
+--
+
+INSERT INTO `kuliners` (`id_kuliner`, `nama_kuliner`, `alamat_kuliner`, `banner_kuliner`, `image_kuliner`, `deskripsi_kuliner`, `link_gmaps`, `link_instagram`, `link_shopee`, `link_tokopedia`) VALUES
+(5, 'a', 'a', '1689229055024_banner_Lighthouse.jpg', '1689229055024_image_Chrysanthemum.jpg', 'a', 'a', 'a', 'a', 'a'),
+(6, 'a', 'a', '1689229055213_banner_Lighthouse.jpg', '1689229055213_image_Chrysanthemum.jpg', 'a', 'a', 'a', 'a', 'a'),
+(7, 'a', 'a', '1689229128407_banner_Jellyfish.jpg', '1689229128407_image_Koala.jpg', 'a', 'a', 'a', 'a', 'a'),
+(8, 'a', 'a', '1689229891993_banner_Lighthouse.jpg', '1689229891978_image_Koala.jpg', 'a', 'a', 'a', 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -176,8 +205,9 @@ CREATE TABLE `objek_wisatas` (
 CREATE TABLE `travels` (
   `id_travel` bigint(20) NOT NULL,
   `nama_travel` varchar(255) DEFAULT NULL,
-  `jam_keberangkatan` time DEFAULT NULL,
-  `trip_dan_harga` varchar(255) DEFAULT NULL,
+  `jam_buka` time DEFAULT NULL,
+  `jam_tutup` time DEFAULT NULL,
+  `trip_dan_harga` text DEFAULT NULL,
   `alamat_travel` text DEFAULT NULL,
   `nomor_telepon_travel` varchar(255) DEFAULT NULL,
   `banner_travel` varchar(255) DEFAULT NULL,
@@ -189,6 +219,28 @@ CREATE TABLE `travels` (
   `link_facebook` text DEFAULT NULL,
   `link_twitter` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` bigint(20) NOT NULL,
+  `nama_user` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role_user` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `nama_user`, `username`, `password`, `role_user`) VALUES
+(1, 'Administrator', 'admin', '$2b$10$MU/yWsSeAiwK5KftTl7Lge6fSYYVlz7iqh1s4JBZPE1rwQpTd.w8G', 'Admin'),
+(3, 'Hotel', 'hotelpermataindah', '$2b$10$PflWmn3s6jRTwnOObN4cXecZl/k.gK5J/Xl7B.c6AbbxdKImOx7IG', 'Hotel');
 
 --
 -- Indexes for dumped tables
@@ -243,6 +295,13 @@ ALTER TABLE `travels`
   ADD PRIMARY KEY (`id_travel`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -256,13 +315,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `akomodasis`
 --
 ALTER TABLE `akomodasis`
-  MODIFY `id_akomodasi` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_akomodasi` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_event` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `hotels`
@@ -274,25 +333,31 @@ ALTER TABLE `hotels`
 -- AUTO_INCREMENT for table `kuliners`
 --
 ALTER TABLE `kuliners`
-  MODIFY `id_kuliner` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kuliner` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `laporan_hotels`
 --
 ALTER TABLE `laporan_hotels`
-  MODIFY `id_laporan` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_laporan` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `objek_wisatas`
 --
 ALTER TABLE `objek_wisatas`
-  MODIFY `id_wisata` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_wisata` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `travels`
 --
 ALTER TABLE `travels`
   MODIFY `id_travel` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
