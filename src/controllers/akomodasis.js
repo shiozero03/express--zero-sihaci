@@ -11,8 +11,9 @@ router.use(bodyParser.json());
 const getAllakomodasis = (req, res) => {
 	const limit = parseInt(req.query.limit) || 0;
 	const page = parseInt(req.query.page) || 1;
+	const category = req.query.category || 0;
 	const offset = (page - 1) * limit;
-	const data = {limit, offset}
+	const data = {limit, offset, category}
 	akomodasisModels.getAllAkomodasis(data)
     .then(modelsData => {
 		res.status(200).json({
@@ -39,6 +40,27 @@ const getakomodasiById = (req, res) => {
 		res.status(200).json({
 			status: 200,
 			message: "Get data akomodasis by id success",
+			data: modelsData
+		});
+    })
+    .catch(error => {
+		console.error('Error executing MySQL query:', error);
+		res.status(500).json({
+			status: 500,
+			message: 'Internal server error',
+			error: error
+		});
+    });
+};
+
+const getakomodasiByHotel = (req, res) => {
+	const { id } = req.params;
+
+	akomodasisModels.getakomodasiByHotel(id)
+    .then(modelsData => {
+		res.status(200).json({
+			status: 200,
+			message: "Get data akomodasis by id hotel success",
 			data: modelsData
 		});
     })
@@ -207,4 +229,4 @@ const deleteakomodasis = (req, res) => {
     });
 };
 
-module.exports = { getAllakomodasis, getakomodasiById, createNewakomodasis, updateakomodasis, deleteakomodasis };
+module.exports = { getAllakomodasis, getakomodasiById, getakomodasiByHotel, createNewakomodasis, updateakomodasis, deleteakomodasis };

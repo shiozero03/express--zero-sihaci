@@ -11,8 +11,9 @@ router.use(bodyParser.json());
 const getAllwisatas = (req, res) => {
 	const limit = parseInt(req.query.limit) || 0;
 	const page = parseInt(req.query.page) || 1;
+	const category = req.query.category || 0;
 	const offset = (page - 1) * limit;
-	const data = {limit, offset}
+	const data = {limit, offset, category}
 	wisatasModels.getAllWisata(data)
     .then(modelsData => {
 		res.status(200).json({
@@ -69,11 +70,11 @@ const createNewwisatas = (req, res) => {
 
   	const banner = req.files.banner_wisata;
   	bannerName = Date.now() + '_banner_' + banner.name;
-		const bannerPath = path.join(__dirname, '../../public/images/wisatas', bannerName);
-		banner.mv(bannerPath, (err) => {
-	    if (err) {
-      		return res.status(500).json({ status: 500, message: 'Failed to upload banner', error: err });
-    	}
+	const bannerPath = path.join(__dirname, '../../public/images/wisatas', bannerName);
+	banner.mv(bannerPath, (err) => {
+    if (err) {
+  		return res.status(500).json({ status: 500, message: 'Failed to upload banner', error: err });
+	}
     });
 
   	const data = {
@@ -117,7 +118,7 @@ const createNewwisatas = (req, res) => {
 
 const updatewisatas = (req, res) => {
 	const {id} = req.params;
-	connection.queryPromise('SELECT * FROM wisatas WHERE id_wisata = ?', id, (error, results) => {
+	connection.queryPromise('SELECT * FROM objek_wisatas WHERE id_wisata = ?', id, (error, results) => {
   		
   		let imageName = '';
   		let bannerName = '';

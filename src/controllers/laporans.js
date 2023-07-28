@@ -52,6 +52,27 @@ const getlaporanById = (req, res) => {
     });
 };
 
+const getlaporanByHotel = (req, res) => {
+	const { id } = req.params;
+
+	laporansModels.getLaporansByHotel(id)
+    .then(modelsData => {
+		res.status(200).json({
+			status: 200,
+			message: "Get data laporans by id hotel success",
+			data: modelsData
+		});
+    })
+    .catch(error => {
+		console.error('Error executing MySQL query:', error);
+		res.status(500).json({
+			status: 500,
+			message: 'Internal server error',
+			error: error
+		});
+    });
+};
+
 const createNewlaporans = (req, res) => {
   	const data = {
   		id_hotel: req.body.id_hotel,
@@ -152,4 +173,4 @@ const deletelaporans = (req, res) => {
     });
 };
 
-module.exports = { getAlllaporans, getlaporanById, createNewlaporans, updatelaporans, deletelaporans };
+module.exports = { getAlllaporans, getlaporanById, getlaporanByHotel, createNewlaporans, updatelaporans, deletelaporans };

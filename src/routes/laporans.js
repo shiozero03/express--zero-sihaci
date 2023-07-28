@@ -7,6 +7,7 @@ const laporanControllers = require('../controllers/laporans');
 router.get('/', laporanControllers.getAlllaporans);
 router.post('/store', laporanControllers.createNewlaporans);
 router.get('/show/:id', laporanControllers.getlaporanById);
+router.get('/hotel/:id', laporanControllers.getlaporanByHotel);
 router.patch('/update/:id', laporanControllers.updatelaporans);
 router.post('/update/:id', laporanControllers.updatelaporans);
 router.get('/delete/:id', laporanControllers.deletelaporans);
